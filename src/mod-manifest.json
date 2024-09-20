@@ -32,7 +32,7 @@
             {
                 "name": "Y",
                 "mode": "categorical",
-                "placement": "left",
+                "placement": "left"
             },
             {
                 "name": "Size by",
