@@ -11,4 +11,7 @@ body{
 
 #mod-container {
     white-space: pre;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
 }
