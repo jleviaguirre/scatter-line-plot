@@ -1,0 +1,30 @@
+days.forEach(function (day, idx) {
+  title.push({
+    textBaseline: 'middle',
+    top: ((idx + 0.5) * 100) / 7 + '%',
+    text: day
+  });
+  singleAxis.push({
+    left: 150,
+    type: 'category',
+    boundaryGap: false,
+    data: hours,
+    top: (idx * 100) / 7 + 5 + '%',
+    height: 100 / 7 - 10 + '%',
+    axisLabel: {
+      interval: 2
+    }
+  });
+  series.push({
+    singleAxisIndex: idx,
+    coordinateSystem: 'singleAxis',
+    type: 'scatter',
+    data: [],
+    symbolSize: function (dataItem) {
+      return dataItem[1] * 4;
+    }
+  });
+});
+data.forEach(function (dataItem) {
+  series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+});
