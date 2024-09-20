@@ -44,28 +44,30 @@ Spotfire.initialize(async (mod) => {
             let hour = row.categorical("X").formattedValue();
             let day = row.categorical("Y").formattedValue();
             let size = row.continuous("Size by").value();
-            data.push([day,hour,size]);
+            let color = row.color().hexCode;
+            data.push([day,hour,size, color]);
         });
         
         // Extract unique days and hours
         let days = new Set();
         let hours = new Set();
+        let colors = new Set();
         
         data.forEach(item => {
             days.add(item[0]);
             hours.add(item[1]);
+            colors.add(item[3]);
         });
         
         days = Array.from(days);
         hours = Array.from(hours);
+        colors = Array.from(colors);
 
         // Replace day strings in data with their corresponding indices from days array
         data = data.map(item => {
             let dayIndex = days.indexOf(item[0]);
             return [dayIndex, item[1], item[2]];
         });
-
-        console.log(data.slice(0, 10));
 
         //remove previous chart
         var dom = document.getElementById('mod-container');
@@ -113,9 +115,13 @@ Spotfire.initialize(async (mod) => {
                 data: [],
                 symbolSize: function (dataItem) {
                     return dataItem[1] * 4;
+                },
+                itemStyle:{
+                    color: colors[idx]
                 }
             });
         });
+
 
         data.forEach(function (dataItem) {
             if (dataItem[0] < series.length) {
@@ -127,6 +133,7 @@ Spotfire.initialize(async (mod) => {
 
 
         option = {
+            animation: false,
             tooltip: {
                 position: 'top'
             },
