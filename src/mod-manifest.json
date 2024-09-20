@@ -39,6 +39,7 @@
     "files": [
         "index.html",
         "main.css",
-        "main.js"
+        "main.js",
+        "echarts.5.5.1.js"
     ]
 }
