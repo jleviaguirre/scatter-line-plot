@@ -31,8 +31,14 @@
             },
             {
                 "name": "Y",
+                "mode": "categorical",
+                "placement": "left",
+            },
+            {
+                "name": "Size by",
                 "mode": "continuous",
-                "placement": "left"
+                "placement": "right",
+                "allowNonAggregatingMeasures": true
             }
         ]
     },
